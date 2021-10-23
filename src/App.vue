@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-     <NavbarComponent />
+    <NavbarComponent />
+    <TimeComponent  />
   </div>
 </template>
 
 <script>
  import NavbarComponent from "./components/navbar/NavbarComponent.vue";
+import TimeComponent from './components/time/TimeComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    NavbarComponent
+    NavbarComponent,
+    TimeComponent
   }
 }
 </script>

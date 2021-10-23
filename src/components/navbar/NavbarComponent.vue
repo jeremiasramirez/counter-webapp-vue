@@ -20,7 +20,7 @@ export default {
 
 <style>
     .navbar{
-        background-color:rgb(20, 20, 177);
+        background-color:rgb(21, 7, 146);
         padding:15px 0;
         border-bottom-left-radius:5px;
         border-bottom-right-radius:5px;
