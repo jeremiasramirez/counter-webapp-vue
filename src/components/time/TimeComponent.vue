@@ -5,9 +5,9 @@
         <article class="set__container">
 
             <div class="container__input">
-                <input class="input__set" type="text" placeholder="Hour" />
-                <input class="input__set" type="text" placeholder="Min" />
-                <input class="input__set" type="text" placeholder="Secs" />
+                <input class="input__set" type="text" placeholder="00" />
+                <input class="input__set" type="text" placeholder="00" />
+                <input class="input__set" type="text" placeholder="00" />
             </div>
         </article>
 
@@ -18,17 +18,18 @@
                 <img src="../../assets/icons/play_arrow_white_24dp.svg" alt="icon">
             </md-button> 
 
-            <md-button class="md-icon-button md-raised md-primary">
-                <img src="../../assets/icons/replay_white_24dp.svg" alt="icon">
+            <md-button class="md-icon-button md-raised md">
+                <img src="../../assets/icons/replay_black_24dp.svg" alt="icon">
             </md-button>  
+
+            <md-button class="md-icon-button md-raised md">
+                <img src="../../assets/icons/pause_black_24dp.svg" alt="icon">
+            </md-button>    
 
             <md-button class="md-icon-button md-raised md-accent">
                 <img src="../../assets/icons/stop_white_24dp.svg" alt="icon">
             </md-button>   
 
-            <md-button class="md-icon-button md-raised md">
-                <img src="../../assets/icons/pause_black_24dp.svg" alt="icon">
-            </md-button>    
         </article>
 
 
@@ -58,7 +59,7 @@ export default {
         align-items: center;
         flex-wrap: wrap;
         height:200px;
-        background-color:rgb(102, 22, 148);
+        background-image:radial-gradient(rgb(31, 33, 163),rgb(36, 14, 161));
         border-radius: 50%;
     }
     .container__input{
@@ -86,10 +87,10 @@ export default {
     }
     
     .input__set{
-        width:50px !important;
-        height:50px;
+        width:55px !important;
+        height:55px;
         text-align:center;
-        border-radius:10%;
+        border-radius:50%;
         border: 1px solid #eee;
         outline:none;
         margin: 0 2px;
