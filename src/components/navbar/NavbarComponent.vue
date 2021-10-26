@@ -5,25 +5,18 @@
     </nav>
 </template>
 
-<script>
-
-
-export default {
-    data() {
-        
-    }
-}
-</script>
-
+ 
 
 
 
 <style>
     .navbar{
-        background-color:rgb(21, 7, 146);
+        background-color:rgba(243, 237, 237, 0.445);
         padding:15px 0;
         border-bottom-left-radius:5px;
         border-bottom-right-radius:5px;
+        border-bottom:none;
+        box-shadow: 0 0 8px 6px rgb(236, 231, 231);
     }
     .title__navbar{
         margin:0;
@@ -31,7 +24,7 @@ export default {
 
         text-align: center;
         font-family: "ubuntu";
-        color: white;
+        /* color: white; */
         font-size:17px;
     }
    
