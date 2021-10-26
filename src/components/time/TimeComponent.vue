@@ -5,16 +5,17 @@
         <article class="set__container">
 
             <div class="container__input">
-                <input class="input__set" type="text" placeholder="00" />
-                <input class="input__set" type="text" placeholder="00" />
-                <input class="input__set" type="text" placeholder="00" />
+                <input  v-model="hours__model" class="input__set" type="text" placeholder="00" />
+                <input  v-model="minutes__model" class="input__set" type="text" placeholder="00" />:
+                <input  v-model="seconds__model" class="input__set" type="text" placeholder="00" />
             </div>
         </article>
 
         <article class="buttoners">
+            
           
           
-            <md-button class="md-icon-button md-raised md-primary">
+            <md-button class="md-icon-button md-raised md-primary" v-on:click="createCounter()">
                 <img src="../../assets/icons/play_arrow_white_24dp.svg" alt="icon">
             </md-button> 
 
@@ -31,8 +32,8 @@
             </md-button>   
 
         </article>
-
-
+    <!-- {{ hours__model }} - {{ minutes__model }} - {{ seconds__model}} -->
+{{ times }}
     </section>
 </template>
 
@@ -45,20 +46,60 @@ import 'vue-material/dist/theme/default.css'
 Vue.use(MdButton)
  
 export default {
-    
+    data(){
+        return {
+            hours__model: 0,
+            minutes__model: 0,
+            seconds__model: 0,
+            times: ''
+           
+        }
+    },
+    methods:{
+        
+
+         createCounter(){
+            
+            
+            const counterInterval = setInterval(()=>{
+                let newCounter=new Date()
+                newCounter.setHours(this.hours__model, this.minutes__model, this.seconds__model--)
+                this.times=`${newCounter.getHours()}  - ${newCounter.getMinutes()} - ${(newCounter.getSeconds())}`
+                
+                
+                if(newCounter.getHours() == 0 && newCounter.getMinutes() == 0 && newCounter.getSeconds() == 0){
+                    clearInterval(counterInterval)
+                }
+            },1000)
+           
+         } 
+
+
+
+    }
 }
 </script>
     
 
-<style>
 
+
+
+
+
+
+
+
+
+
+<style>
+    
     .set__container{
-        width:200px;
+        width:250px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        height:200px;
+        height:250px;
         background-image:radial-gradient(rgb(31, 33, 163),rgb(36, 14, 161));
         border-radius: 50%;
     }
