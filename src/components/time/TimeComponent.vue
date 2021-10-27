@@ -1,6 +1,6 @@
 <template>
   <section class="container__time">
-    <article class="set__container">
+    <article class="set__container" v-if="!isClose">
       <div class="container__input">
         <input
           v-model="hours__model"
@@ -23,7 +23,7 @@
       </div>
     </article>
 
-    <div  v-if="isRunningCounter" >
+    <div  v-if="isClose" >
         <RunningComponent :hours__props="newCounter.getHours()"
         :minutes__props="newCounter.getMinutes()"
         :seconds__props="newCounter.getSeconds()"/>
@@ -40,26 +40,30 @@
         <img src="../../assets/icons/play_arrow_white_24dp.svg" alt="icon" />
       </md-button>
 
-      <md-button
-        class="md-icon-button md-raised md"
-        v:on-click="!isClose"
-      >
-        <img src="../../assets/icons/replay_black_24dp.svg" alt="icon" />
-      </md-button>  
+
 
       <md-button class="md-icon-button md-raised md" v-if="!isPaused" v-on:click="pauseInterval()">
         <img src="../../assets/icons/pause_black_24dp.svg" alt="icon" />
       </md-button>  
 
       <md-button class="md-icon-button md-raised md-accent"
-       v-if="!isStop"
+       v-if="isRunningCounter && !isStop"
        v-on:click="cleanInterval()">
        
         <img src="../../assets/icons/stop_white_24dp.svg" alt="icon" />
       </md-button>
+
+
+        <md-button
+       
+        class="md-icon-button md-raised md"
+        v-if="isClose"
+        v-on:click="closeRunning()"
+      >
+        <img src="../../assets/icons/close_black_24dp.svg" alt="icon" />
+      </md-button>
     </article>
-    <!-- {{ hours__model }} - {{ minutes__model }} - {{ seconds__model}} -->
-    {{ times }}
+  
     
   </section>
  
@@ -84,7 +88,7 @@ export default {
       isRunningCounter:false,
       isStop: true,
       counterInterval: null,
-      isClose:true,
+      isClose:false,
       newCounter:null 
     };
   },
@@ -92,6 +96,14 @@ export default {
       RunningComponent
   },
   methods: {
+
+    closeRunning(){
+      this.isClose=false
+       this.isRunningCounter=false
+      this.cleanInterval()
+      
+    },
+
     pauseInterval(counterInterval) {
         this.isPaused=true;
         clearInterval(counterInterval);
@@ -101,7 +113,7 @@ export default {
      
 
     cleanInterval(){
-      this.isStop=false
+  
         this.pauseInterval()
       
         this.newCounter.setHours(0)
@@ -111,15 +123,16 @@ export default {
         this.hours__model=0
         this.minutes__model=0
         this.seconds__model=0
-        // this.isRunningCounter=false;
-        
+        this.isRunningCounter=false
+          this.isStop=false
+          
     },
 
     createCounter() {
       
       if(this.hours__model>=1 || this.minutes__model >=1 || this.seconds__model>=1){
 
-         
+        this.isClose=true
         this.isPaused=false
         this.isRunningCounter=true;
       this.isStop=false
@@ -198,7 +211,9 @@ export default {
 }
 
 .buttoners {
-  margin-top: 25px;
+  position:absolute;
+  top:52%;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   background-color: #eee;

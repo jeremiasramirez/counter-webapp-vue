@@ -1,17 +1,19 @@
 <template>
     <section>
         <article class="set__container__timing animate__clock"> 
+            {{activatedClassWhenSecodnsIsTop()}}
+            {{activatedWhenSecondsIsClose()}}
             <p>{{hours__props}}</p>:
             <p>{{minutes__props}}</p>:
             <p :class="activateWhenSecondIsTop">{{seconds__props}} </p>
               <!-- {{activateClassLastChild()}} -->
               
-             <div class="timeout" v-if="timeout">
-                TIME OUT
+             <div class="timeout" v-if="timeout==true">
+                TIME OUT 
             </div>
         </article>
 
-       {{activatedClassWhenSecodnsIsTop()}}
+       
     </section>
       
 </template>
@@ -19,7 +21,10 @@
 
 
 <script>
+ 
 export default {
+
+    
     props: [
         'hours__props',
         'minutes__props',
@@ -29,16 +34,28 @@ export default {
     data(){
         return {
             timeout:false,
-            activateWhenSecondIsTop:null 
+            activateWhenSecondIsTop:false 
         }
     },
     methods: {
+        activatedWhenSecondsIsClose(){
+            
+            if(this.hours__props ==0 && this.hours__props ==0 && this.seconds__props == 0){
+                
+                   this.timeout=true
+                
+            }
+            
+        },
         activatedClassWhenSecodnsIsTop(){
-            if(this.hours__props ==0 && this.hours__props ==0 && this.seconds__props == 59)
-            this.activateWhenSecondIsTop="animate-last-child"
-            else if (this.hours__props ==0 && this.hours__props ==0 && this.seconds__props == 0){
-            this.timeout=true;
-        }
+             
+
+
+            if(this.hours__props ==0 && this.hours__props ==0 && this.seconds__props == 59){
+                this.activateWhenSecondIsTop="animate-last-child"
+            }
+            
+          
         }
        
     }
@@ -57,7 +74,8 @@ export default {
     font-family:"ubuntu";
     font-size:12px;
     border-radius:5px;
-    margin-top:10px;
+    margin-top:-7px;
+ 
     position:absolute;
     padding: 3px 10px;
     color:white;
@@ -71,11 +89,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  
   flex-wrap: wrap;
   height: 250px;
-  top:360px;
+  /* top:360px; */
   background-color: white;
   position:absolute;
+  left:40%;
   z-index:-10;
   border-radius: 50%;
   animation: bouncingShadow 3s infinite linear alternate-reverse;
@@ -95,8 +115,9 @@ export default {
     font-family: "ubuntu";
     font-size:22px;
     word-spacing:2px;
+    /* margin-top:60px; */
     padding:3px;
-    margin:0;
+    /* margin:0; */
     
 }
 
