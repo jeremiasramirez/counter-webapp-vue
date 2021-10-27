@@ -23,35 +23,46 @@
       </div>
     </article>
 
-    <RunningComponent />
-
+    <div  v-if="isRunningCounter" >
+        <RunningComponent :hours__props="newCounter.getHours()"
+        :minutes__props="newCounter.getMinutes()"
+        :seconds__props="newCounter.getSeconds()"/>
+    </div>
+   
+    
     <article class="buttoners">
       <md-button
+       
         class="md-icon-button md-raised md-primary"
+        v-if="isPaused"
         v-on:click="createCounter()"
       >
         <img src="../../assets/icons/play_arrow_white_24dp.svg" alt="icon" />
       </md-button>
 
-      <!-- <md-button
+      <md-button
         class="md-icon-button md-raised md"
-        v:on-click="retryCounter()"
+        v:on-click="!isClose"
       >
         <img src="../../assets/icons/replay_black_24dp.svg" alt="icon" />
-      </md-button>
+      </md-button>  
 
-      <md-button class="md-icon-button md-raised md">
+      <md-button class="md-icon-button md-raised md" v-if="!isPaused" v-on:click="pauseInterval()">
         <img src="../../assets/icons/pause_black_24dp.svg" alt="icon" />
-      </md-button> -->
+      </md-button>  
 
-      <md-button class="md-icon-button md-raised md-accent" v-on:click="stopInterval()">
+      <md-button class="md-icon-button md-raised md-accent"
+       v-if="!isStop"
+       v-on:click="cleanInterval()">
+       
         <img src="../../assets/icons/stop_white_24dp.svg" alt="icon" />
       </md-button>
     </article>
     <!-- {{ hours__model }} - {{ minutes__model }} - {{ seconds__model}} -->
     {{ times }}
-     
+    
   </section>
+ 
 </template>
 
 <script>
@@ -69,30 +80,58 @@ export default {
       minutes__model: 0,
       seconds__model: 0,
       times: "",
-      isRunningCounter: false,
+      isPaused: true,
+      isRunningCounter:false,
+      isStop: true,
       counterInterval: null,
-      newCounter:null
+      isClose:true,
+      newCounter:null 
     };
   },
   components:{
       RunningComponent
   },
   methods: {
-    stopInterval(counterInterval) {
-      
+    pauseInterval(counterInterval) {
+        this.isPaused=true;
         clearInterval(counterInterval);
-       clearInterval(this.counterInterval);
+        clearInterval(this.counterInterval);
+        
     },
-
      
 
+    cleanInterval(){
+      this.isStop=false
+        this.pauseInterval()
+      
+        this.newCounter.setHours(0)
+        this.newCounter.setMinutes(0)
+        this.newCounter.setSeconds(0)
+
+        this.hours__model=0
+        this.minutes__model=0
+        this.seconds__model=0
+        // this.isRunningCounter=false;
+        
+    },
+
     createCounter() {
+      
+      if(this.hours__model>=1 || this.minutes__model >=1 || this.seconds__model>=1){
+
+         
+        this.isPaused=false
+        this.isRunningCounter=true;
+      this.isStop=false
+      
       this.counterInterval = setInterval(() => {
+
        this.newCounter = new Date();
-        this.newCounter.setHours(
+
+       this.newCounter.setHours(
           this.hours__model,
           this.minutes__model,
-          this.seconds__model--
+          --this.seconds__model
         );
         this.times = `${this.newCounter.getHours()}  - ${this.newCounter.getMinutes()} - ${this.newCounter.getSeconds()}`;
 
@@ -101,10 +140,17 @@ export default {
           this.newCounter.getMinutes() == 0 &&
           this.newCounter.getSeconds() == 0
         ) {
+          this.cleanInterval()
           this.stopInterval(this.counterInterval);
+         
         }
+
+        
+
+
       }, 1000);
-    },
+    }
+    }
   },
 };
 </script>
