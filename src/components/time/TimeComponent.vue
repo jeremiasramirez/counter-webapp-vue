@@ -10,11 +10,11 @@
 
   <!-- close menu -->
     <div class="closeMenu">
-        <md-button v-on:click="isMenuHidde" v-if="hide==false">
+        <md-button v-on:click="createMenu()" v-if="hide==false">
          <img src="../../assets/icons/menu.svg" alt="icon" />
         </md-button>
 
-        <md-button v-if="hide==true" v-on:click="isMenuHidde">
+        <md-button v-if="hide==true" v-on:click="createMenu()">
          <img src="../../assets/icons/close.svg" alt="icon" />
         </md-button>
     </div>
@@ -123,11 +123,16 @@ export default {
       RunningComponent
   },
   methods: {
-    isMenuHidde(){
-      console.log(this.hide)
-      if(!this.hide==true) this.hide=true
-      else this.hide=false
+
+
+    createMenu(){
+ 
+      if(!this.hide==true) this.hide=true;
+      else this.hide=false;
+
     },
+
+
     closeRunning(){
       this.isClose=false
        this.isRunningCounter=false
@@ -139,7 +144,6 @@ export default {
         this.isPaused=true;
         clearInterval(counterInterval);
         clearInterval(this.counterInterval);
-        
     },
      
 
