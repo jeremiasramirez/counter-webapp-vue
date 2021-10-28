@@ -1,0 +1,12 @@
+.bounceIn{
+    animation: bounceIdentifier .3s linear;
+    transition: 1s;
+}
+@keyframes identifier {
+    from{
+        transform: scale(.8);
+    }
+    to{
+        transform: scale(1);
+    }
+}

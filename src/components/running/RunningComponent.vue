@@ -8,11 +8,8 @@
             <p :class="activateWhenSecondIsTop">{{seconds__props}} </p>
               <!-- {{activateClassLastChild()}} -->
               
-             <div class="timeout" v-if="timeout">
-                TIME OUT
-             
-                 
-            </div>
+             <div class="timeout" v-if="timeout && hours__props ==0 && minutes__props==0 && seconds__props == 0 ">
+                TIME OUT  </div>
         </article>
 
        
@@ -36,18 +33,28 @@ export default {
     data(){
         return {
             timeout:false,
-            activateWhenSecondIsTop:false ,
-            lastTextTimeout: ""
+            activateWhenSecondIsTop:false  
         }
     },
+  
     methods: {
+        beforeCreate() {
+            console.log("beforeCreate")
+            this.hours__props=0;
+            this.minutes__props=0;
+            this.seconds__props=0;
+             this.activateWhenSecondIsTop=""
+             this.timeout=false
+        },
         activatedWhenSecondsIsClose(){
             
-            if(this.hours__props ==0 && this.minutes__props ==0 && this.seconds__props == 59){
-                
+            if(this.hours__props ==0 && this.minutes__props ==0 && this.seconds__props <= 5){
                 this.timeout=true
+               
              
             }
+            
+           
             
             
         },
@@ -55,9 +62,10 @@ export default {
              
 
 
-            if(this.hours__props ==0 && this.minutes__props ==0 && this.seconds__props == 59){
+            if(this.hours__props ==0 && this.minutes__props ==0 && this.seconds__props <= 59){
                 this.activateWhenSecondIsTop="animate-last-child"
             }
+             
             
           
         }
@@ -85,8 +93,19 @@ export default {
     color:white;
     font-weight:600;
     /* border:1px solid red; */
-    top:50px;
+    top:60px;
+   
+    animation: showtimeout  5s  linear;
      
+}
+@keyframes showtimeout {
+    from{
+        opacity:0;
+        background-color: transparent;
+    }
+    to{
+        opacity:1;
+    }
 }
     .set__container__timing{
     width: 250px;
@@ -99,19 +118,20 @@ export default {
   /* top:360px; */
   background-color: white;
   position:absolute;
-  left:36%;
+  left:41%;
   z-index:-10;
   border-radius: 50%;
-  animation: bouncingShadow 3s infinite linear alternate-reverse;
+  animation: bouncingShadow 1.2s infinite ease-in;
  
 }
 
 @keyframes bouncingShadow {
     from{
-         border: 4px solid rgb(105, 132, 250);
+        border: 8px solid rgb(230, 226, 231);
+        
     }
     to{
-        border: 15px solid rgb(230, 226, 231);
+         border: 4px solid rgb(105, 132, 250);
     }
 }
 

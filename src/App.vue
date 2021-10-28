@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <NavbarComponent />
+
+   
+      <NavbarComponent />
     <TimeComponent  />
+   
   </div>
 </template>
 
@@ -18,4 +21,9 @@ export default {
 }
 </script>
 
+
+<style>
+ 
+   
+</style>
  

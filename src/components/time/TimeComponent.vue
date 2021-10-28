@@ -1,22 +1,45 @@
 <template>
-  <section class="container__time">
+ 
+  
+
+  <section>
+    <!-- menu -->
+     <article class="menu" v-if="hide==true">
+      <p>menu</p>
+    </article>
+
+  <!-- close menu -->
+    <div class="closeMenu">
+        <md-button v-on:click="isMenuHidde" v-if="hide==false">
+         <img src="../../assets/icons/menu.svg" alt="icon" />
+        </md-button>
+
+        <md-button v-if="hide==true" v-on:click="isMenuHidde">
+         <img src="../../assets/icons/close.svg" alt="icon" />
+        </md-button>
+    </div>
+  
+
+    <section class="container__time">
+    
+
     <article class="set__container" v-if="!isClose">
       <div class="container__input">
         <input
           v-model="hours__model"
-          class="input__set"
+          class="input__set bounceIn"
           type="text"
           placeholder="00"
-        />
+        /> <p class="separate">:</p>
         <input
           v-model="minutes__model"
-          class="input__set"
+          class="input__set bounceIn"
           type="text"
           placeholder="00"
-        />
+        /><p class="separate">:</p>
         <input
           v-model="seconds__model"
-          class="input__set"
+          class="input__set bounceIn"
           type="text"
           placeholder="00"
         />
@@ -66,6 +89,7 @@
   
     
   </section>
+  </section>
  
 </template>
 
@@ -89,6 +113,9 @@ export default {
       isStop: true,
       counterInterval: null,
       isClose:false,
+    
+      ishide:false,
+      hide:false,
       newCounter:null 
     };
   },
@@ -96,7 +123,11 @@ export default {
       RunningComponent
   },
   methods: {
-
+    isMenuHidde(){
+      console.log(this.hide)
+      if(!this.hide==true) this.hide=true
+      else this.hide=false
+    },
     closeRunning(){
       this.isClose=false
        this.isRunningCounter=false
@@ -144,7 +175,7 @@ export default {
        this.newCounter.setHours(
           this.hours__model,
           this.minutes__model,
-          --this.seconds__model
+          --this.seconds__model+1
         );
         this.times = `${this.newCounter.getHours()}  - ${this.newCounter.getMinutes()} - ${this.newCounter.getSeconds()}`;
 
@@ -154,7 +185,7 @@ export default {
           this.newCounter.getSeconds() == 0
         ) {
           this.cleanInterval()
-          this.stopInterval(this.counterInterval);
+          this.pauseInterval(this.counterInterval);
          
         }
 
@@ -190,9 +221,16 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   height: 250px;
-  background-color: rgb(65, 124, 235);
+  border: 10px solid rgba(58, 67, 189, 0.26);
   border-radius: 50%;
   overflow:hidden;
+}
+
+.separate{
+  color:blue;
+  font-weight: 600;
+  font-size:18px;
+ 
 }
 .container__input {
   display: flex;
@@ -202,6 +240,7 @@ export default {
 }
 .container__time {
   padding-top: 50px;
+ 
   display: flex;
   justify-content: end;
   flex-wrap: wrap;
@@ -227,13 +266,37 @@ export default {
   width: 55px !important;
   height: 55px;
   text-align: center;
-  border-radius: 50%;
+  border-radius: 10%;
+  color: blue;
   border: 1px solid #eee;
   outline: none;
   margin: 0 2px;
-  background-color: white;
+  background-color: #eee;
   font-weight: 600;
   font-size: 17px;
   font-family: "ubuntu";
+}
+.menu{
+  position:absolute;
+  width:20%;
+  height:100%;
+ background-color:rgb(232, 235, 240);
+}
+
+.closeMenu{
+  position:absolute;
+
+  top:0px;
+  left:-20px;
+  height:100px !important;
+}
+
+.closeMenu md-button{
+  margin:0 !important;
+  height: 30px !important;
+  
+}
+.hide{
+  opacity:0;
 }
 </style>
