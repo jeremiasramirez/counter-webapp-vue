@@ -8,8 +8,10 @@
             <p :class="activateWhenSecondIsTop">{{seconds__props}} </p>
               <!-- {{activateClassLastChild()}} -->
               
-             <div class="timeout" v-if="timeout==true">
-                TIME OUT 
+             <div class="timeout" v-if="timeout">
+                TIME OUT
+             
+                 
             </div>
         </article>
 
@@ -34,24 +36,26 @@ export default {
     data(){
         return {
             timeout:false,
-            activateWhenSecondIsTop:false 
+            activateWhenSecondIsTop:false ,
+            lastTextTimeout: ""
         }
     },
     methods: {
         activatedWhenSecondsIsClose(){
             
-            if(this.hours__props ==0 && this.hours__props ==0 && this.seconds__props == 0){
+            if(this.hours__props ==0 && this.minutes__props ==0 && this.seconds__props == 59){
                 
-                   this.timeout=true
-                
+                this.timeout=true
+             
             }
+            
             
         },
         activatedClassWhenSecodnsIsTop(){
              
 
 
-            if(this.hours__props ==0 && this.hours__props ==0 && this.seconds__props == 59){
+            if(this.hours__props ==0 && this.minutes__props ==0 && this.seconds__props == 59){
                 this.activateWhenSecondIsTop="animate-last-child"
             }
             
@@ -95,7 +99,7 @@ export default {
   /* top:360px; */
   background-color: white;
   position:absolute;
-  left:40%;
+  left:36%;
   z-index:-10;
   border-radius: 50%;
   animation: bouncingShadow 3s infinite linear alternate-reverse;
@@ -104,7 +108,7 @@ export default {
 
 @keyframes bouncingShadow {
     from{
-         border: 4px solid rgb(246, 244, 247);
+         border: 4px solid rgb(105, 132, 250);
     }
     to{
         border: 15px solid rgb(230, 226, 231);
@@ -125,6 +129,7 @@ export default {
  
    border-radius:4px;
      color: white;
+     transition:1s;
    animation: inof .7s infinite alternate-reverse;
 }
 @keyframes inof {

@@ -82,7 +82,7 @@ export default {
     return {
       hours__model: 0,
       minutes__model: 0,
-      seconds__model: 0,
+      seconds__model: 1,
       times: "",
       isPaused: true,
       isRunningCounter:false,
@@ -190,7 +190,7 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   height: 250px;
-  background-color: rgb(99, 36, 136);
+  background-color: rgb(65, 124, 235);
   border-radius: 50%;
   overflow:hidden;
 }
