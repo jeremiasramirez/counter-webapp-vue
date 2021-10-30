@@ -3,10 +3,17 @@
   
 
   <section>
-    <!-- menu -->
-     <article class="menu" v-if="hide==true">
-      <p>menu</p>
+    <!-- menu "-->
+     <article class="menu animate" v-if="hide==true">
+
+      <nav class="menu__nav">
+          <p class="bounceLeft menu__nav__title">History</p>
+      </nav>
+
+
     </article>
+
+
 
   <!-- close menu -->
     <div class="closeMenu">
@@ -14,8 +21,8 @@
          <img class="zoomIn" src="../../assets/icons/menu.svg" alt="icon" />
         </md-button>
 
-        <md-button class="zoomIn" v-if="hide==true" v-on:click="createMenu()">
-         <img src="../../assets/icons/close.svg" alt="icon" />
+        <md-button  v-if="hide==true" v-on:click="createMenu()">
+         <img class="zoomIn" src="../../assets/icons/close.svg" alt="icon" />
         </md-button>
     </div>
   
@@ -280,12 +287,7 @@ export default {
   font-size: 17px;
   font-family: "ubuntu";
 }
-.menu{
-  position:absolute;
-  width:20%;
-  height:100%;
- background-color:rgb(232, 235, 240);
-}
+
 
 .closeMenu{
   position:absolute;
@@ -295,12 +297,40 @@ export default {
   height:100px !important;
 }
 
-.closeMenu md-button{
-  margin:0 !important;
-  height: 30px !important;
-  
+.closeMenu *{
+ 
+  margin:-1px 0 0 0 !important;
+  height: 51px !important;
+  background-color:rgb(30, 59, 185) !important;
+}
+.closeMenu img{
+  margin-left:15px !important;
+  margin-top:7px !important;
+   height: 37px !important;
+   
 }
 .hide{
   opacity:0;
+}
+
+.menu{
+  position:absolute;
+  width:20%;
+  background-color: rgb(250, 245, 245);
+  height:100%;
+  border-right:2px solid rgb(230, 226, 226);
+}
+
+.menu__nav{
+  border-bottom:1px solid #eee;
+  /* margin-top: -16px; */
+  height:30px;
+}
+
+.menu__nav__title{
+  font-size:16px;
+  text-align:center;
+  font-family: "ubuntu";
+  font-weight:500;
 }
 </style>
