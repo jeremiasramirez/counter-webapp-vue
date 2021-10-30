@@ -3,9 +3,9 @@
         <article class="set__container__timing animate__clock"> 
             {{activatedClassWhenSecodnsIsTop()}}
             {{activatedWhenSecondsIsClose()}}
-            <p>{{hours__props}}</p>:
-            <p>{{minutes__props}}</p>:
-            <p :class="activateWhenSecondIsTop">{{seconds__props}} </p>
+            <p class="zoomIn">{{hours__props}}</p>:
+            <p class="zoomIn">{{minutes__props}}</p>:
+            <p class="zoomIn ">{{seconds__props}} </p>
               <!-- {{activateClassLastChild()}} -->
               
              <div class="timeout" v-if="timeout && hours__props ==0 && minutes__props==0 && seconds__props == 0 ">
@@ -154,11 +154,11 @@ export default {
 }
 @keyframes inof {
     from{
-        background-color: red;
+        opacity: .3;
        
     }
     to{
-       background-color: rgb(214, 200, 200);
+        opacity: 1;
         
     }
 }

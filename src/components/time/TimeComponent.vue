@@ -11,10 +11,10 @@
   <!-- close menu -->
     <div class="closeMenu">
         <md-button v-on:click="createMenu()" v-if="hide==false">
-         <img src="../../assets/icons/menu.svg" alt="icon" />
+         <img class="zoomIn" src="../../assets/icons/menu.svg" alt="icon" />
         </md-button>
 
-        <md-button v-if="hide==true" v-on:click="createMenu()">
+        <md-button class="zoomIn" v-if="hide==true" v-on:click="createMenu()">
          <img src="../../assets/icons/close.svg" alt="icon" />
         </md-button>
     </div>
@@ -23,23 +23,23 @@
     <section class="container__time">
     
 
-    <article class="set__container" v-if="!isClose">
+    <article class="set__container animate" v-if="!isClose">
       <div class="container__input">
         <input
           v-model="hours__model"
-          class="input__set bounceIn"
+          class="input__set "
           type="text"
           placeholder="00"
         /> <p class="separate">:</p>
         <input
           v-model="minutes__model"
-          class="input__set bounceIn"
+          class="input__set "
           type="text"
           placeholder="00"
         /><p class="separate">:</p>
         <input
           v-model="seconds__model"
-          class="input__set bounceIn"
+          class="input__set "
           type="text"
           placeholder="00"
         />
@@ -53,27 +53,27 @@
     </div>
    
     
-    <article class="buttoners">
+    <article class="buttoners animate">
       <md-button
        
-        class="md-icon-button md-raised md-primary"
+        class="md-icon-button md-raised md-primary "
         v-if="isPaused"
         v-on:click="createCounter()"
       >
-        <img src="../../assets/icons/play_arrow_white_24dp.svg" alt="icon" />
+        <img class="zoomIn" src="../../assets/icons/play_arrow_white_24dp.svg" alt="icon" />
       </md-button>
 
 
 
       <md-button class="md-icon-button md-raised md" v-if="!isPaused" v-on:click="pauseInterval()">
-        <img src="../../assets/icons/pause_black_24dp.svg" alt="icon" />
+        <img class="zoomIn" src="../../assets/icons/pause_black_24dp.svg" alt="icon" />
       </md-button>  
 
       <md-button class="md-icon-button md-raised md-accent"
        v-if="isRunningCounter && !isStop"
        v-on:click="cleanInterval()">
        
-        <img src="../../assets/icons/stop_white_24dp.svg" alt="icon" />
+        <img class="zoomIn" src="../../assets/icons/stop_white_24dp.svg" alt="icon" />
       </md-button>
 
 
@@ -83,7 +83,7 @@
         v-if="isClose"
         v-on:click="closeRunning()"
       >
-        <img src="../../assets/icons/close_black_24dp.svg" alt="icon" />
+        <img class="zoomIn" src="../../assets/icons/close_black_24dp.svg" alt="icon" />
       </md-button>
     </article>
   

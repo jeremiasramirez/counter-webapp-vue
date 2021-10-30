@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar">
    
-        <h1 class="title__navbar">Counter</h1>
+        <h1 class="title__navbar animate">Counter</h1>
     </nav>
 </template>
 

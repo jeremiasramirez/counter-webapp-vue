@@ -1,12 +1,45 @@
-.bounceIn{
-    animation: bounceIdentifier .3s linear;
+.animate{
+    animation: animateidentifier .7s linear;
     transition: 1s;
 }
-@keyframes identifier {
+@keyframes animateidentifier {
+    from{ 
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+.bounceIn{
+    animation: bounceIdentifier .6s linear;
+    transition: 1s;
+}
+@keyframes bounceIdentifier {
     from{
-        transform: scale(.8);
+        transform: translateY(4px);
+        opacity:.4;
+    }
+    to{
+        transform: translateY(0);
+        opacity:1;
+    }
+}
+
+
+/* zoom in */
+
+.zoomIn{
+    animation: zoomInIdentifier .4s linear;
+    transition: 1s;
+}
+@keyframes zoomInIdentifier {
+    from{
+        transform: scale(.6);
+ 
     }
     to{
         transform: scale(1);
+   
     }
 }
