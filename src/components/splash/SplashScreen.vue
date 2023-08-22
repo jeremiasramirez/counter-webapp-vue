@@ -19,6 +19,7 @@
         .spinning__loading{
             width: 30px;
             height: 30px;
+            
             border-radius: 50%;
             border-left:3px solid rgb(140, 147, 216); 
             animation: scaleOnScale .4s infinite linear;
@@ -36,6 +37,7 @@
          .container__logo{
              padding-top:20%;
              display:flex;
+             margin-top: 50px;
              justify-content:end;
              flex-wrap: wrap;
              align-items:center;

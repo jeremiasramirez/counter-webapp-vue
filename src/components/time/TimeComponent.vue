@@ -262,9 +262,10 @@ export default {
 
 .buttoners {
   position:absolute;
-  top:52%;
-  margin-top: 40px;
+  top:60%;
+  margin-top: 30px;
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: #eee;
   border-radius: 10px;

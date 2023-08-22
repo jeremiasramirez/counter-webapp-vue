@@ -117,8 +117,7 @@ export default {
   height: 250px;
   /* top:360px; */
   background-color: white;
-  position:absolute;
-  left:41%;
+ 
   z-index:-10;
   border-radius: 50%;
   animation: bouncingShadow 1.2s infinite ease-in;

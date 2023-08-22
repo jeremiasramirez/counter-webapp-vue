@@ -23,9 +23,9 @@
         padding:0;
         
         text-align: center;
-        font-family: "ubuntu";
+        font-family: "verdana";
         color: white;
-        font-size:17px;
+        font-size:18px;
     }
    
 </style>
